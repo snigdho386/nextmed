@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class NextmedApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(NextmedApplication.class, args);
+		System.out.println("Server up and running! 🚀🚀😎");
 	}
 
 }
