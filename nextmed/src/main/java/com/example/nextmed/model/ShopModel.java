@@ -18,6 +18,7 @@ import java.util.List;
 @Builder            // Builder pattern (optional)
 public class ShopModel {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

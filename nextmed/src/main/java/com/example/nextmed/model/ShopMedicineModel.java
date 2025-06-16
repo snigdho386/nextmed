@@ -17,16 +17,17 @@ import java.time.LocalDateTime;
 @Builder            // Builder pattern (optional)
 public class ShopMedicineModel {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @MapsId("shopId")
+    @MapsId("id")
     @JsonManagedReference
     private ShopModel shop;
 
     @ManyToOne
-    @MapsId("medicineId")
+    @MapsId("id")
     @JsonManagedReference
     private MedicineInfoModel medicine;
 
