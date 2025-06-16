@@ -1,36 +1,37 @@
 package com.example.nextmed.model;
 
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "medicineInfo")
+@Table(name = "shopVsMedicine")
 @Data               // Generates getters, setters, toString, equals, hashCode
 @NoArgsConstructor  // Default constructor
 @AllArgsConstructor // Constructor with all fields
 @Builder            // Builder pattern (optional)
-class MedicineInfoModel {
+public class ShopMedicineModel {
 
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private String brand;
-    private String composition;
-    private String description;
-    private Long mrp;
+    @ManyToOne
+    @MapsId("shopId")
+    @JsonManagedReference
+    private ShopModel shop;
 
-    @OneToMany(mappedBy = "medicine", cascade = CascadeType.ALL)
-    @JsonBackReference
-    private List<ShopMedicineModel> shopMedicines = new ArrayList<>();
+    @ManyToOne
+    @MapsId("medicineId")
+    @JsonManagedReference
+    private MedicineInfoModel medicine;
+
+    private Integer stock;
+    private Double price;
+    private Double discount;
+    private LocalDateTime lastUpdated;
 }

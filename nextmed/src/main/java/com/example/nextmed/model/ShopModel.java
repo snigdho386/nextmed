@@ -1,6 +1,5 @@
 package com.example.nextmed.model;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,26 +10,25 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
-@Table(name = "medicineInfo")
+@Table(name = "shop")
 @Data               // Generates getters, setters, toString, equals, hashCode
 @NoArgsConstructor  // Default constructor
 @AllArgsConstructor // Constructor with all fields
 @Builder            // Builder pattern (optional)
-class MedicineInfoModel {
+public class ShopModel {
 
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    private String brand;
-    private String composition;
-    private String description;
-    private Long mrp;
+    private String addressCoordinates;
+    private String addressString;
+    private Long pincode;
+    private Double rebateRate;
 
-    @OneToMany(mappedBy = "medicine", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<ShopMedicineModel> shopMedicines = new ArrayList<>();
+
 }
